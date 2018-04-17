@@ -146,7 +146,7 @@ class MemeViewController: UIViewController,
   }
 
   // MARK: Utility Methods
-  
+
   func generateMemedImage() -> UIImage {
 
     topToolBar.isHidden = true
