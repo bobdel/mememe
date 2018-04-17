@@ -41,5 +41,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>I need to access your photos in order to create Memes. </string>
+	<key>NSCameraUsageDescription</key>
+	<string>I need access to the Camera in order to create an image for your new Meme.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>I need permission to save the Meme to your Photo Library.</string>
 </dict>
 </plist>
