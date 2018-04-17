@@ -14,6 +14,7 @@ class MemeViewController: UIViewController,
                           UITextFieldDelegate {
 
   // MARK: Outlets and Properties
+
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var actionButton: UIBarButtonItem!
   @IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -33,10 +34,21 @@ class MemeViewController: UIViewController,
     NSAttributedStringKey.strokeWidth.rawValue: -3.0
   ]
 
+  var meme: Meme?
+
   // MARK: User Target Action Methods
+
   @IBAction func actionButton(_ sender: UIBarButtonItem) {
     let compositeImage = generateMemedImage()
     let avc = UIActivityViewController(activityItems: [compositeImage], applicationActivities: nil)
+    avc.completionWithItemsHandler = {
+      (activityType, completed, items, error) in
+
+      guard completed else { return }
+
+      self.save()
+      }
+
     present(avc, animated: true, completion: nil)
   }
 
@@ -62,6 +74,7 @@ class MemeViewController: UIViewController,
   }
 
   // MARK: ViewController Lifecycle
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(true)
     subscribeToKeyboardNotifications()
@@ -91,12 +104,14 @@ class MemeViewController: UIViewController,
   }
 
   // MARK: UIImagePickerControllerDelegate conformance
+
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
     imageView.image = info["UIImagePickerControllerOriginalImage"]! as? UIImage
     dismiss(animated: true, completion: nil)
   }
 
   // MARK: UITextFieldDelegate Conformance and keyboard UI
+
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     topTextField.resignFirstResponder()
     bottomTextField.resignFirstResponder()
@@ -131,6 +146,7 @@ class MemeViewController: UIViewController,
   }
 
   // MARK: Utility Methods
+  
   func generateMemedImage() -> UIImage {
 
     topToolBar.isHidden = true
@@ -153,9 +169,14 @@ class MemeViewController: UIViewController,
     bottomTextField.text = "BOTTOM"
   }
 
+  // save an image to the photo library
+  @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+  }
+
+  // save meme to photo library (called only if used in  activity view controller)
   @objc func save() {
-    print("Save")
-//    let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, memedImage: compositeImage)
+    meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
+    UIImageWriteToSavedPhotosAlbum((meme?.memedImage)!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
   }
 
 }
