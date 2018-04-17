@@ -101,6 +101,8 @@ class MemeViewController: UIViewController,
 
     resetTextFields()
 
+    view.addGestureRecognizer(UITapGestureRecognizer(target: view, action: #selector(view.endEditing(_:)) ))
+
   }
 
   // MARK: UIImagePickerControllerDelegate conformance
