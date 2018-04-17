@@ -36,14 +36,11 @@ class MemeViewController: UIViewController,
   // MARK: User Target Action Methods
   @IBAction func actionButton(_ sender: UIBarButtonItem) {
     let compositeImage = generateMemedImage()
-    let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, memedImage: compositeImage)
-    print(meme) // TODO: FIX remove this line.
     let avc = UIActivityViewController(activityItems: [compositeImage], applicationActivities: nil)
     present(avc, animated: true, completion: nil)
   }
 
   @IBAction func cancelButton(_ sender: UIBarButtonItem) {
-    // TODO: add cancel button.
     resetTextFields()
     imageView.image = nil
     actionButton.isEnabled = false
@@ -67,9 +64,9 @@ class MemeViewController: UIViewController,
   // MARK: ViewController Lifecycle
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(true)
-
     subscribeToKeyboardNotifications()
     cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+    actionButton.isEnabled = imageView.image != nil
   }
 
   override func viewWillDisappear(_ animated: Bool) {
@@ -90,16 +87,13 @@ class MemeViewController: UIViewController,
     bottomTextField.textAlignment = .center
 
     resetTextFields()
-    actionButton.isEnabled = false
 
   }
 
   // MARK: UIImagePickerControllerDelegate conformance
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-    print("returned \(info["UIImagePickerControllerOriginalImage"]!)")
     imageView.image = info["UIImagePickerControllerOriginalImage"]! as? UIImage
     dismiss(animated: true, completion: nil)
-    actionButton.isEnabled = true
   }
 
   // MARK: UITextFieldDelegate Conformance and keyboard UI
@@ -159,6 +153,10 @@ class MemeViewController: UIViewController,
     bottomTextField.text = "BOTTOM"
   }
 
+  @objc func save() {
+    print("Save")
+//    let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, memedImage: compositeImage)
+  }
 
 }
 
