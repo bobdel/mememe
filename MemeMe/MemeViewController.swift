@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MemeViewController.swift
 //  MemeMe
 //
 //  Created by Robert DeLaurentis on 4/17/18.
@@ -8,8 +8,18 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MemeViewController: UIViewController {
 
+  // MARK: Properties and Outlets
+
+
+  override var prefersStatusBarHidden: Bool {
+    return true
+  }
+
+  // MARK: User Target Action Methods
+
+  // MARK: ViewController Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
