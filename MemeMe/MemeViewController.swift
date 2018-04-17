@@ -15,6 +15,7 @@ class MemeViewController: UIViewController,
 
   // MARK: Outlets and Properties
   @IBOutlet weak var imageView: UIImageView!
+  @IBOutlet weak var actionButton: UIBarButtonItem!
   @IBOutlet weak var cameraButton: UIBarButtonItem!
   @IBOutlet weak var topTextField: UITextField!
   @IBOutlet weak var bottomTextField: UITextField!
@@ -33,7 +34,7 @@ class MemeViewController: UIViewController,
   ]
 
   // MARK: User Target Action Methods
-  @IBAction func activityButton(_ sender: UIBarButtonItem) {
+  @IBAction func actionButton(_ sender: UIBarButtonItem) {
     let compositeImage = generateMemedImage()
     let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, memedImage: compositeImage)
     print(meme) // TODO: FIX remove this line.
@@ -43,6 +44,9 @@ class MemeViewController: UIViewController,
 
   @IBAction func cancelButton(_ sender: UIBarButtonItem) {
     // TODO: add cancel button.
+    resetTextFields()
+    imageView.image = nil
+    actionButton.isEnabled = false
   }
 
   // choose an image from the album or camera (if available)
@@ -85,8 +89,9 @@ class MemeViewController: UIViewController,
     topTextField.textAlignment = .center
     bottomTextField.textAlignment = .center
 
-    topTextField.text =  "TOP"
-    bottomTextField.text = "BOTTOM"
+    resetTextFields()
+    actionButton.isEnabled = false
+
   }
 
   // MARK: UIImagePickerControllerDelegate conformance
@@ -94,6 +99,7 @@ class MemeViewController: UIViewController,
     print("returned \(info["UIImagePickerControllerOriginalImage"]!)")
     imageView.image = info["UIImagePickerControllerOriginalImage"]! as? UIImage
     dismiss(animated: true, completion: nil)
+    actionButton.isEnabled = true
   }
 
   // MARK: UITextFieldDelegate Conformance and keyboard UI
@@ -148,6 +154,10 @@ class MemeViewController: UIViewController,
     return memedImage
   }
 
+  func resetTextFields() {
+    topTextField.text =  "TOP"
+    bottomTextField.text = "BOTTOM"
+  }
 
 
 }

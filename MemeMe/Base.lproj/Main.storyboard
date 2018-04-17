@@ -43,7 +43,7 @@
                                 <items>
                                     <barButtonItem systemItem="action" id="3MV-uM-XrQ">
                                         <connections>
-                                            <action selector="activityButton:" destination="BYZ-38-t0r" id="3vQ-8r-VGI"/>
+                                            <action selector="actionButton:" destination="BYZ-38-t0r" id="3vQ-8r-VGI"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Cds-Us-awM"/>
@@ -91,6 +91,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="actionButton" destination="3MV-uM-XrQ" id="vLr-rk-q2V"/>
                         <outlet property="bottomTextField" destination="A3I-Hh-rjP" id="VBc-u1-XMd"/>
                         <outlet property="bottomToolBar" destination="4EA-Q1-XOf" id="oPL-g5-uDC"/>
                         <outlet property="cameraButton" destination="uZW-tb-ayz" id="Fcn-HC-ByA"/>
