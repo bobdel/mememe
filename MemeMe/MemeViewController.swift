@@ -53,7 +53,8 @@ class MemeViewController: UIViewController,
   }
 
   @IBAction func cancelButton(_ sender: UIBarButtonItem) {
-    resetTextFields()
+    topTextField.text = "TOP"
+    bottomTextField.text = "BOTTOM"
     imageView.image = nil
     actionButton.isEnabled = false
   }
@@ -90,16 +91,8 @@ class MemeViewController: UIViewController,
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    topTextField.delegate = self
-    bottomTextField.delegate = self
-
-    topTextField.defaultTextAttributes = memeTextAttributes
-    bottomTextField.defaultTextAttributes = memeTextAttributes
-
-    topTextField.textAlignment = .center
-    bottomTextField.textAlignment = .center
-
-    resetTextFields()
+    configure(topTextField, with: "TOP")
+    configure(bottomTextField, with: "BOTTOM")
 
     view.addGestureRecognizer(UITapGestureRecognizer(target: view, action: #selector(view.endEditing(_:)) ))
 
@@ -115,8 +108,7 @@ class MemeViewController: UIViewController,
   // MARK: UITextFieldDelegate Conformance and keyboard UI
 
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    topTextField.resignFirstResponder()
-    bottomTextField.resignFirstResponder()
+    textField.resignFirstResponder()
     return true
   }
 
@@ -151,8 +143,7 @@ class MemeViewController: UIViewController,
 
   func generateMemedImage() -> UIImage {
 
-    topToolBar.isHidden = true
-    bottomToolBar.isHidden = true
+    hideUserControls(true)
 
     // Render view to an image
     UIGraphicsBeginImageContext(self.view.frame.size)
@@ -160,15 +151,21 @@ class MemeViewController: UIViewController,
     let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
     UIGraphicsEndImageContext()
 
-    topToolBar.isHidden = false
-    bottomToolBar.isHidden = false
+    hideUserControls(false)
 
     return memedImage
   }
 
-  func resetTextFields() {
-    topTextField.text =  "TOP"
-    bottomTextField.text = "BOTTOM"
+  func hideUserControls(_ isHidden: Bool) {
+    topToolBar.isHidden = isHidden
+    bottomToolBar.isHidden = isHidden
+  }
+
+  func configure(_ textField: UITextField, with defaultText: String) {
+    textField.delegate = self
+    textField.defaultTextAttributes = memeTextAttributes
+    textField.textAlignment = .center
+    textField.text =  defaultText
   }
 
   // save an image to the photo library
