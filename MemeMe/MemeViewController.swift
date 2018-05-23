@@ -23,6 +23,7 @@ class MemeViewController: UIViewController,
   @IBOutlet weak var topToolBar: UIToolbar!
   @IBOutlet weak var bottomToolBar: UIToolbar!
 
+  // properties
   override var prefersStatusBarHidden: Bool {
     return true
   }
@@ -34,7 +35,7 @@ class MemeViewController: UIViewController,
     NSAttributedStringKey.strokeWidth.rawValue: -3.0
   ]
 
-  var meme: Meme?
+//  var meme: Meme?
 
   // MARK: User Target Action Methods
 
@@ -174,12 +175,12 @@ class MemeViewController: UIViewController,
 
   // save meme to photo library (called only if used in activity view controller)
   @objc func save() {
-    meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
-    UIImageWriteToSavedPhotosAlbum((meme?.memedImage)!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+    let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
+    UIImageWriteToSavedPhotosAlbum((meme.memedImage), self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
 
     // add meme to shared data model in AppDelegate
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    appDelegate.memes.append(meme!)
+    appDelegate.memes.append(meme)
 
   }
 
