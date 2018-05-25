@@ -95,10 +95,10 @@
 		619DD39F20B762A200D84850 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6183D79420864AA200E74512 /* EditMemeViewController.swift */,
 				619DD3A020B762DE00D84850 /* MemesTableViewController.swift */,
 				619DD3A220B776D200D84850 /* MemesCollectionViewController.swift */,
 				614E66AD20B895210047051F /* DetailViewController.swift */,
+				6183D79420864AA200E74512 /* EditMemeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
