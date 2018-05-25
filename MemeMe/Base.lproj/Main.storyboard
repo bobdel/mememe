@@ -165,7 +165,18 @@
                     <view key="view" contentMode="scaleToFill" id="giA-Uw-rUr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vaW-h5-mbU">
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0WC-nW-Oh5" firstAttribute="trailing" secondItem="vaW-h5-mbU" secondAttribute="trailing" id="7ii-3O-brn"/>
+                            <constraint firstItem="vaW-h5-mbU" firstAttribute="top" secondItem="0WC-nW-Oh5" secondAttribute="top" id="FIM-Bt-Xd2"/>
+                            <constraint firstItem="vaW-h5-mbU" firstAttribute="leading" secondItem="0WC-nW-Oh5" secondAttribute="leading" id="Koa-WU-pgX"/>
+                            <constraint firstAttribute="bottom" secondItem="vaW-h5-mbU" secondAttribute="bottom" id="yRl-vU-Fbm"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="0WC-nW-Oh5"/>
                     </view>
                     <navigationItem key="navigationItem" id="2Kn-qs-cZK">
@@ -175,10 +186,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="imageView" destination="vaW-h5-mbU" id="nD2-5a-WDY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VDC-dz-KvS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1341" y="288"/>
+            <point key="canvasLocation" x="1340.5797101449277" y="287.77173913043481"/>
         </scene>
         <!--Show as Collection-->
         <scene sceneID="SnQ-TF-7BQ">
@@ -299,7 +313,7 @@
         <image name="TableTabIcon" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="2fn-w5-n19"/>
-        <segue reference="Nby-NQ-mxm"/>
+        <segue reference="ZF3-6j-rN6"/>
+        <segue reference="Kde-gP-nlF"/>
     </inferredMetricsTieBreakers>
 </document>

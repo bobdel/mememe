@@ -34,22 +34,30 @@ class MemesTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return memes.count
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "idTableCell", for: indexPath)
         let meme = memes[indexPath.row]
         cell.textLabel?.text = meme.topText
         cell.detailTextLabel?.text = meme.bottomText
         cell.imageView?.image = meme.memedImage
-        // Configure the cell...
 
         return cell
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+      if segue.identifier == "idTableToDetail" {
+        if let destination = segue.destination as? DetailViewController {
+          let cell  = sender as! UITableViewCell
+          let image = cell.imageView?.image
+          destination.image = image
+        }
+      }
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -96,4 +104,6 @@ class MemesTableViewController: UITableViewController {
     }
     */
 
-}
+} // end of class
+
+
