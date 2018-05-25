@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MemeViewController: UIViewController,
+class EditMemeViewController: UIViewController,
                           UIImagePickerControllerDelegate,
                           UINavigationControllerDelegate,
                           UITextFieldDelegate {
@@ -54,10 +54,11 @@ class MemeViewController: UIViewController,
   }
 
   @IBAction func cancelButton(_ sender: UIBarButtonItem) {
-    topTextField.text = "TOP"
-    bottomTextField.text = "BOTTOM"
-    imageView.image = nil
-    actionButton.isEnabled = false
+//    topTextField.text = "TOP"
+//    bottomTextField.text = "BOTTOM"
+//    imageView.image = nil
+//    actionButton.isEnabled = false
+    self.dismiss(animated: true, completion: nil)
   }
 
   // choose an image from the album or camera (if available)
