@@ -8,8 +8,6 @@
 
 import UIKit
 
-private let reuseIdentifier = "idMemeCell"
-
 class MemesCollectionViewController: UICollectionViewController {
 
     var memes: [Meme]! {
@@ -21,7 +19,14 @@ class MemesCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let width = (view.frame.size.width - 20) / 3
+        let layout = collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize  = CGSize(width: width, height: width)
 
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        collectionView?.reloadData()
     }
 
 
@@ -45,7 +50,7 @@ class MemesCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MemeCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "idMemeCell", for: indexPath) as! MemeCollectionViewCell
         let currentMeme = memes[indexPath.row]
         cell.memeImageView.image = currentMeme.memedImage
 

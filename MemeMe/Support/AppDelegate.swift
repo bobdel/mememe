@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
     // FIXME: REMOVE FOLLOWING TEST DATA LATER
-    let newMeme = Meme(topText: "TestTOP", bottomText: "TestBOTTOM", originalImage: #imageLiteral(resourceName: "testImage"), memedImage: #imageLiteral(resourceName: "testImage"))
+    let newMeme = Meme(topText: "TestTOP", bottomText: "TestBOTTOM EXtra Long to stuff cell", originalImage: #imageLiteral(resourceName: "testImage"), memedImage: #imageLiteral(resourceName: "testImage"))
     memes.append(newMeme)
     memes.append(newMeme)
     memes.append(newMeme)

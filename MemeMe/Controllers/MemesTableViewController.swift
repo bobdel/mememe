@@ -26,6 +26,10 @@ class MemesTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -42,8 +46,7 @@ class MemesTableViewController: UITableViewController {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "idTableCell", for: indexPath)
         let meme = memes[indexPath.row]
-        cell.textLabel?.text = meme.topText
-        cell.detailTextLabel?.text = meme.bottomText
+        cell.textLabel?.text = meme.topText + " " + meme.bottomText
         cell.imageView?.image = meme.memedImage
 
         return cell

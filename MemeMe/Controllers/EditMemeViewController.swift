@@ -23,10 +23,17 @@ class EditMemeViewController: UIViewController,
   @IBOutlet weak var topToolBar: UIToolbar!
   @IBOutlet weak var bottomToolBar: UIToolbar!
 
-  // properties
-  override var prefersStatusBarHidden: Bool {
-    return true
-  }
+    // properties
+    var isStatusBarHidden: Bool = false
+
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .slide
+    }
+
+    override var prefersStatusBarHidden: Bool {
+        return isStatusBarHidden
+    }
+
 
   let memeTextAttributes:[String: Any] = [
     NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
@@ -35,7 +42,11 @@ class EditMemeViewController: UIViewController,
     NSAttributedStringKey.strokeWidth.rawValue: -3.0
   ]
 
-//  var meme: Meme?
+    var memes: [Meme]! {
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        return appDelegate.memes
+    }
 
   // MARK: User Target Action Methods
 
@@ -83,6 +94,8 @@ class EditMemeViewController: UIViewController,
     subscribeToKeyboardNotifications()
     cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
     actionButton.isEnabled = imageView.image != nil
+    isStatusBarHidden = true
+    UIView.animate(withDuration: 0.3) { self.setNeedsStatusBarAppearanceUpdate() }
   }
 
   override func viewWillDisappear(_ animated: Bool) {
@@ -182,7 +195,6 @@ class EditMemeViewController: UIViewController,
     // add meme to shared data model in AppDelegate
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     appDelegate.memes.append(meme)
-
   }
 
 }
