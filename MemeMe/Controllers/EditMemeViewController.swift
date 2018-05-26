@@ -24,7 +24,7 @@ class EditMemeViewController: UIViewController,
     @IBOutlet weak var bottomToolBar: UIToolbar!
 
     // properties
-    var isStatusBarHidden: Bool = false
+    var isStatusBarHidden: Bool = false // required for animation
 
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
         return .slide
