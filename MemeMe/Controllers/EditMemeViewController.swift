@@ -23,7 +23,7 @@ class EditMemeViewController: UIViewController,
     @IBOutlet weak var topToolBar: UIToolbar!
     @IBOutlet weak var bottomToolBar: UIToolbar!
 
-    // properties
+    // properties that manage status bar visibility
     var isStatusBarHidden: Bool = false // required for animation
 
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
@@ -34,7 +34,7 @@ class EditMemeViewController: UIViewController,
         return isStatusBarHidden
     }
 
-
+    // properties
     let memeTextAttributes:[String: Any] = [
         NSAttributedStringKey.strokeColor.rawValue: UIColor.black,
         NSAttributedStringKey.foregroundColor.rawValue: UIColor.white,
@@ -191,6 +191,8 @@ class EditMemeViewController: UIViewController,
         // add meme to shared data model in AppDelegate
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.memes.append(meme)
+
+        self.dismiss(animated: true, completion: nil)
     }
 
 }

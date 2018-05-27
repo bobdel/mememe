@@ -10,21 +10,24 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-  @IBOutlet weak var imageView: UIImageView!
+    // properties and outlets
+    var image: UIImage!
 
-  var image: UIImage!
-  
+    @IBOutlet weak var imageView: UIImageView!
+
+    // MARK: - ViewController Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.image = image
     }
 
-  override func viewWillAppear(_ animated: Bool) {
-    tabBarController?.tabBar.isHidden = true
-  }
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = true
+    }
 
-  override func viewWillDisappear(_ animated: Bool) {
-    tabBarController?.tabBar.isHidden = false
-  }
+    override func viewWillDisappear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
+    }
 
 }
